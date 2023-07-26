@@ -1,0 +1,13 @@
+import { Injectable } from '@nestjs/common';
+import { TodoRepository } from '../repositories/todo.repository';
+import { CreateTodoInput } from '../../dto/create-todo.input';
+import { Todo } from '../entities/todo.entity';
+
+@Injectable()
+export class CreateTodoUsecase {
+  constructor(private readonly todoRepository: TodoRepository) {}
+
+  async execute(createTodoInput: CreateTodoInput): Promise<Todo> {
+    return this.todoRepository.create(createTodoInput);
+  }
+}
