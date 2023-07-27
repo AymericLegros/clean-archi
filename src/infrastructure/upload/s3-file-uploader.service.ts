@@ -8,7 +8,7 @@ import {
 } from '@aws-sdk/client-s3';
 
 @Injectable()
-export class S3FileUploaderModule {
+export class S3FileUploaderService {
   private readonly s3Client: S3Client;
 
   private readonly region: string = process.env.AWS_S3_REGION;
@@ -43,7 +43,7 @@ export class S3FileUploaderModule {
         }),
       );
     } catch (error) {
-      console.log(error);
+      throw error;
     }
   }
 

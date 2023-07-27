@@ -7,7 +7,7 @@ import { DatabaseModule } from './infrastructure/database/database.module';
 import { DemoModule } from './modules/demo/demo.module';
 
 import configuration from './infrastructure/configuration';
-import { S3FileUploaderModule } from './infrastructure/upload/s3-file-uploader.module';
+import { S3FileUploaderService } from './infrastructure/upload/s3-file-uploader.service';
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ import { S3FileUploaderModule } from './infrastructure/upload/s3-file-uploader.m
   ],
   providers: [
     // MODULE D'UPLOAD S3
-    S3FileUploaderModule,
+    S3FileUploaderService,
   ],
 })
 export class AppModule {}
