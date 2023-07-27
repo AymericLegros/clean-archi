@@ -8,12 +8,16 @@ import { GetTodoUsecase } from './domain/usecases/get-todo.usecase';
 import { GetTodosUsecase } from './domain/usecases/get-todos.usecase';
 import { UpdateTodoUsecase } from './domain/usecases/update-todo.usecase';
 import { TodoRepositoryImpl } from './data/repositories/todo.repository-impl';
+import { UploadFileUsecase } from './domain/usecases/upload-file.usecase';
+import { TodoController } from './presentation/controllers/todo.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TodoRepositoryImpl, TodoModel])],
+  controllers: [TodoController],
   providers: [
     TodoResolver,
     TodoRepositoryImpl,
+    UploadFileUsecase,
     {
       provide: GetTodoUsecase,
       inject: [TodoRepositoryImpl],

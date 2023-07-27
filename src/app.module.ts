@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
-import { DatabaseModule } from './database/database.module';
+import { DatabaseModule } from './infrastructure/database/database.module';
 import { join } from 'path';
 import { TodoModule } from './modules/todos/todo.module';
 

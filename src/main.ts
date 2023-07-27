@@ -3,6 +3,8 @@ import {
   FastifyAdapter,
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
+import fastyfyMultipart from '@fastify/multipart';
+
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -10,6 +12,7 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter(),
   );
+  app.register(fastyfyMultipart);
   await app.listen(3000);
 }
 
