@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TodoModel } from './data/models/todo.model';
-import { TodoResolver } from './resolvers/todo.resolver';
+import { TodoResolver } from './presentation/resolvers/todo.resolver';
 import { CreateTodoUsecase } from './domain/usecases/create-todo.usecase';
 import { DeleteTodoUsecase } from './domain/usecases/delete-todo.usecase';
 import { GetTodoUsecase } from './domain/usecases/get-todo.usecase';

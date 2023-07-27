@@ -1,5 +1,5 @@
-import { CreateTodoInput } from '../../dto/create-todo.input';
-import { UpdateTodoInput } from '../../dto/update-todo.input';
+import { CreateTodoInput } from '../../presentation/dto/create-todo.input';
+import { UpdateTodoInput } from '../../presentation/dto/update-todo.input';
 import { Todo } from '../entities/todo.entity';
 
 export interface TodoRepository {
