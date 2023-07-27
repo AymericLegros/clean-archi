@@ -1,12 +1,12 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { CreateTodoInput } from '../dto/create-todo.dto';
-import { UpdateTodoInput } from '../dto/update-todo.dto';
+import { CreateTodoInput } from '../dtos/create-todo.dto';
+import { UpdateTodoInput } from '../dtos/update-todo.dto';
 import { GetTodoUsecase } from '../../domain/usecases/get-todo.usecase';
 import { GetTodosUsecase } from '../../domain/usecases/get-todos.usecase';
 import { CreateTodoUsecase } from '../../domain/usecases/create-todo.usecase';
 import { DeleteTodoUsecase } from '../../domain/usecases/delete-todo.usecase';
 import { UpdateTodoUsecase } from '../../domain/usecases/update-todo.usecase';
-import { TodoDto } from '../dto/todo.dto';
+import { TodoDto } from '../dtos/todo.dto';
 
 @Resolver(() => TodoDto)
 export class TodoResolver {

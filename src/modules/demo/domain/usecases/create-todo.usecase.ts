@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { TodoRepository } from '../repositories/todo.repository';
-import { CreateTodoInput } from '../../presentation/dto/create-todo.dto';
+import { CreateTodoInput } from '../../presentation/dtos/create-todo.dto';
 import { Todo } from '../entities/todo.entity';
 
 @Injectable()

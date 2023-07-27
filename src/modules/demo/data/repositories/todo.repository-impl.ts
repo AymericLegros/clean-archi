@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Todo } from '../../domain/entities/todo.entity';
 import { TodoRepository } from '../../domain/repositories/todo.repository';
-import { CreateTodoInput } from '../../presentation/dto/create-todo.dto';
-import { UpdateTodoInput } from '../../presentation/dto/update-todo.dto';
+import { CreateTodoInput } from '../../presentation/dtos/create-todo.dto';
+import { UpdateTodoInput } from '../../presentation/dtos/update-todo.dto';
 import { TodoModel } from '../models/todo.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';

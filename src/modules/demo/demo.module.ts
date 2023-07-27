@@ -11,13 +11,15 @@ import { TodoRepositoryImpl } from './data/repositories/todo.repository-impl';
 import { UploadFileUsecase } from './domain/usecases/upload-file.usecase';
 import { DemoController } from './presentation/controllers/demo.controller';
 import { GetHelloUsecase } from './domain/usecases/get-hello.usecase';
+import { TodoDataSourceImpl } from './data/datasources/Todo.datasource';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TodoRepositoryImpl, TodoModel])],
   controllers: [DemoController],
   providers: [
-    TodoResolver,
+    TodoDataSourceImpl,
     TodoRepositoryImpl,
+    TodoResolver,
     GetHelloUsecase,
     UploadFileUsecase,
     {
