@@ -1,13 +1,21 @@
 import { MemoryStorageFile } from '@blazity/nest-file-fastify';
-import { S3 } from 'aws-sdk';
+import { Injectable } from '@nestjs/common';
+import {
+  S3Client,
+  PutObjectCommand,
+  CreateBucketCommand,
+  DeleteObjectCommand,
+} from '@aws-sdk/client-s3';
 
-export class S3FileUploader {
-  private readonly s3: S3;
+@Injectable()
+export class S3FileUploaderModule {
+  private readonly s3Client: S3Client;
 
+  private readonly region: string = process.env.AWS_S3_REGION;
   private readonly bucket: string = process.env.AWS_S3_BUCKET;
 
   constructor() {
-    this.s3 = new S3();
+    this.s3Client = new S3Client({ region: this.region });
   }
 
   upload(file: MemoryStorageFile): Promise<void> {
@@ -23,22 +31,46 @@ export class S3FileUploader {
     file: Buffer,
     contentType: string,
   ): Promise<void> {
-    await this.s3
-      .putObject({
-        Bucket: this.bucket,
-        Key: key,
-        Body: file,
-        ContentType: contentType,
-      })
-      .promise();
+    try {
+      await this.createBucketIfNotExists(this.bucket);
+
+      await this.s3Client.send(
+        new PutObjectCommand({
+          Bucket: this.bucket,
+          Key: key,
+          Body: file,
+          ContentType: contentType,
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  async deleteFile(bucket: string, key: string): Promise<void> {
-    await this.s3
-      .deleteObject({
-        Bucket: bucket,
-        Key: key,
-      })
-      .promise();
+  private async createBucketIfNotExists(bucket: string): Promise<void> {
+    try {
+      await this.s3Client.send(
+        new CreateBucketCommand({
+          Bucket: bucket,
+        }),
+      );
+    } catch (error) {
+      if (error.name !== 'BucketAlreadyOwnedByYou') {
+        throw error;
+      }
+    }
+  }
+
+  private async deleteFile(key: string): Promise<void> {
+    try {
+      await this.s3Client.send(
+        new DeleteObjectCommand({
+          Bucket: this.bucket,
+          Key: key,
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
