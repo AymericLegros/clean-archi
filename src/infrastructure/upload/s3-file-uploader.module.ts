@@ -11,7 +11,7 @@ export class S3FileUploader {
   }
 
   upload(file: MemoryStorageFile): Promise<void> {
-    const key = `${Date.now()}-${file.fieldname}`;
+    const key = `${file.fieldname}-${Date.now()}`;
     const contentType = file.mimetype;
     const buffer = file.buffer;
 

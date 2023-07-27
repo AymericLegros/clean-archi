@@ -7,6 +7,11 @@ import {
 import { UploadFileUsecase } from '../../domain/usecases/upload-file.usecase';
 import { GetHelloUsecase } from '../../domain/usecases/get-hello.usecase';
 
+/**
+ * @description
+ * This is a demo controller.
+ * On l'utilise pour tester les fonctionnalités de NestJS.
+ */
 @Controller('demo')
 export class DemoController {
   constructor(

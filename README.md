@@ -71,18 +71,3 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
-
-Je dois créer une API graphql avec Nestjs.
-J'aimerai utiliser la clean architecture.
-Il doit y avoir une conenxion a la base de donnée (avec typeORM)
-Une gestion des tests parfaite
-Le modele d'une table et son type graphql doivent etre dans 2 fichiers différents
-Donne moi l'arborescence final avec un exemple de code CRUD pour une entité "todos"
-
-
-Je dois créer une API graphql avec Nestjs.
-J'aimerai que tu me propose une architecture pour mon projet.
-Il doit y avoir une conenxion a la base de donnée (avec typeORM)
-Une gestion des tests parfaite
-Le modele d'une table et son type graphql doivent etre dans 2 fichiers différents
-Donne moi l'arborescence final avec un exemple de code CRUD pour une entité "todos"
