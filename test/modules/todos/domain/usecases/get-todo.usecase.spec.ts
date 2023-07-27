@@ -1,7 +1,7 @@
 import { DeepMocked, createMock } from '@golevelup/ts-jest';
-import { Todo } from '../../../../../src/modules/todos/domain/entities/todo.entity';
-import { GetTodoUsecase } from '../../../../../src/modules/todos/domain/usecases/get-todo.usecase';
-import { TodoRepository } from '../../../../../src/modules/todos/domain/repositories/todo.repository';
+import { Todo } from '../../../../../src/modules/demo/domain/entities/todo.entity';
+import { GetTodoUsecase } from '../../../../../src/modules/demo/domain/usecases/get-todo.usecase';
+import { TodoRepository } from '../../../../../src/modules/demo/domain/repositories/todo.repository';
 
 describe('GetTodoUsecase', () => {
   let usecase: GetTodoUsecase;

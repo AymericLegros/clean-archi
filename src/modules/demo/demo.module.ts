@@ -9,14 +9,16 @@ import { GetTodosUsecase } from './domain/usecases/get-todos.usecase';
 import { UpdateTodoUsecase } from './domain/usecases/update-todo.usecase';
 import { TodoRepositoryImpl } from './data/repositories/todo.repository-impl';
 import { UploadFileUsecase } from './domain/usecases/upload-file.usecase';
-import { TodoController } from './presentation/controllers/todo.controller';
+import { DemoController } from './presentation/controllers/demo.controller';
+import { GetHelloUsecase } from './domain/usecases/get-hello.usecase';
 
 @Module({
   imports: [TypeOrmModule.forFeature([TodoRepositoryImpl, TodoModel])],
-  controllers: [TodoController],
+  controllers: [DemoController],
   providers: [
     TodoResolver,
     TodoRepositoryImpl,
+    GetHelloUsecase,
     UploadFileUsecase,
     {
       provide: GetTodoUsecase,
@@ -50,4 +52,4 @@ import { TodoController } from './presentation/controllers/todo.controller';
     },
   ],
 })
-export class TodoModule {}
+export class DemoModule {}
