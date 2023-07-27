@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
-import { CreateTodoInput } from '../dto/create-todo.input';
-import { UpdateTodoInput } from '../dto/update-todo.input';
+import { CreateTodoInput } from '../dto/create-todo.dto';
+import { UpdateTodoInput } from '../dto/update-todo.dto';
 import { GetTodoUsecase } from '../../domain/usecases/get-todo.usecase';
 import { GetTodosUsecase } from '../../domain/usecases/get-todos.usecase';
 import { CreateTodoUsecase } from '../../domain/usecases/create-todo.usecase';

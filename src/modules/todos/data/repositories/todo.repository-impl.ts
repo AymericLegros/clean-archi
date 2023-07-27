@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Todo } from '../../domain/entities/todo.entity';
 import { TodoRepository } from '../../domain/repositories/todo.repository';
-import { CreateTodoInput } from '../../presentation/dto/create-todo.input';
-import { UpdateTodoInput } from '../../presentation/dto/update-todo.input';
+import { CreateTodoInput } from '../../presentation/dto/create-todo.dto';
+import { UpdateTodoInput } from '../../presentation/dto/update-todo.dto';
 import { TodoModel } from '../models/todo.model';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
@@ -28,6 +28,8 @@ export class TodoRepositoryImpl implements TodoRepository {
     return this.todoRepository.save({ id, ...input });
   }
   delete(id: number): Promise<boolean> {
-    return this.todoRepository.delete(id).then((result) => result.affected > 0);
+    return this.todoRepository
+      .softDelete(id)
+      .then((result) => result.affected > 0);
   }
 }
