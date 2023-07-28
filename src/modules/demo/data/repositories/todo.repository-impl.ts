@@ -1,35 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { Todo } from '../../domain/models/todo.model';
 import { TodoRepository } from '../../domain/repositories/todo.repository';
-import { CreateTodoInput } from '../../presentation/dtos/create-todo.dto';
-import { UpdateTodoInput } from '../../presentation/dtos/update-todo.dto';
+import { TodoDataSource } from '../datasources/todo.datasource';
+import { CreateTodoEntity } from '../dtos/create-todo.dto';
+import { UpdateTodoEntity } from '../dtos/update-todo.dto';
 import { TodoEntity } from '../entities/todo.entity';
-import { InjectRepository } from '@nestjs/typeorm';
-import { FindOneOptions, Repository } from 'typeorm';
 
 @Injectable()
 export class TodoRepositoryImpl implements TodoRepository {
-  constructor(
-    @InjectRepository(TodoEntity)
-    private readonly todoRepository: Repository<TodoEntity>,
-  ) {}
+  constructor(private readonly todoDataSource: TodoDataSource) {}
 
-  findAll(): Promise<Todo[]> {
-    return this.todoRepository.find();
+  findAll(): Promise<TodoEntity[]> {
+    return this.todoDataSource.findAll();
   }
-  findOne(id: number): Promise<Todo> {
-    const options: FindOneOptions = { where: { id } };
-    return this.todoRepository.findOne(options);
+  findOne(id: number): Promise<TodoEntity> {
+    return this.todoDataSource.findOne(id);
   }
-  create(input: CreateTodoInput): Promise<Todo> {
-    return this.todoRepository.save(input);
+  create(input: CreateTodoEntity): Promise<TodoEntity> {
+    return this.todoDataSource.create(input);
   }
-  update(id: number, input: UpdateTodoInput): Promise<Todo> {
-    return this.todoRepository.save({ id, ...input });
+  update(id: number, input: UpdateTodoEntity): Promise<TodoEntity> {
+    return this.todoDataSource.update(id, input);
   }
   delete(id: number): Promise<boolean> {
-    return this.todoRepository
-      .softDelete(id)
-      .then((result) => result.affected > 0);
+    return this.todoDataSource.delete(id);
   }
 }

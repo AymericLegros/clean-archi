@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, BaseEntity } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Todo } from '../../domain/models/todo.model';
 
 @Entity({ name: 'todos' })
-export class TodoEntity extends BaseEntity {
+export class TodoEntity extends Todo {
   @PrimaryGeneratedColumn()
   id: number;
 
