@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { TodoRepository } from '../repositories/todo.repository';
-import { Todo } from '../entities/todo.entity';
+import { Todo } from '../models/todo.model';
 
 @Injectable()
 export class GetTodoUsecase {

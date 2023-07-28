@@ -1,5 +1,5 @@
 import { Field, ObjectType, ID } from '@nestjs/graphql';
-import { Todo } from '../../domain/entities/todo.entity';
+import { Todo } from '../../domain/models/todo.model';
 
 @ObjectType()
 export class TodoDto extends Todo {

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { TodoRepository } from '../repositories/todo.repository';
 import { CreateTodoInput } from '../../presentation/dtos/create-todo.dto';
-import { Todo } from '../entities/todo.entity';
+import { Todo } from '../models/todo.model';
 
 @Injectable()
 export class CreateTodoUsecase {

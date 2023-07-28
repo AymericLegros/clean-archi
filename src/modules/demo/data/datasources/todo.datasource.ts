@@ -1,31 +1,31 @@
 import { FindOneOptions } from 'typeorm';
-import { TodoModel } from '../models/todo.model';
+import { TodoEntity } from '../entities/todo.entity';
 import { Injectable } from '@nestjs/common';
 
 export interface TodoDataSource {
-  findAll(): Promise<TodoModel[]>;
-  findOne(id: number): Promise<TodoModel>;
-  create(todo: TodoModel): Promise<TodoModel>;
-  update(id: number, todo: TodoModel): Promise<TodoModel>;
-  delete(todo: TodoModel): Promise<boolean>;
+  findAll(): Promise<TodoEntity[]>;
+  findOne(id: number): Promise<TodoEntity>;
+  create(todo: TodoEntity): Promise<TodoEntity>;
+  update(id: number, todo: TodoEntity): Promise<TodoEntity>;
+  delete(todo: TodoEntity): Promise<boolean>;
 }
 
 @Injectable()
 export class TodoDataSourceImpl implements TodoDataSource {
-  findAll(): Promise<TodoModel[]> {
-    return TodoModel.find();
+  findAll(): Promise<TodoEntity[]> {
+    return TodoEntity.find();
   }
-  findOne(id: number): Promise<TodoModel> {
+  findOne(id: number): Promise<TodoEntity> {
     const options: FindOneOptions = { where: { id } };
-    return TodoModel.findOne(options);
+    return TodoEntity.findOne(options);
   }
-  create(todo: TodoModel): Promise<TodoModel> {
-    return TodoModel.create(todo).save();
+  create(todo: TodoEntity): Promise<TodoEntity> {
+    return TodoEntity.create(todo).save();
   }
-  update(id: number, todo: TodoModel): Promise<TodoModel> {
-    return TodoModel.update(id, todo).then(() => todo);
+  update(id: number, todo: TodoEntity): Promise<TodoEntity> {
+    return TodoEntity.update(id, todo).then(() => todo);
   }
-  delete(todo: TodoModel): Promise<boolean> {
-    return TodoModel.softRemove(todo).then(() => true);
+  delete(todo: TodoEntity): Promise<boolean> {
+    return TodoEntity.softRemove(todo).then(() => true);
   }
 }

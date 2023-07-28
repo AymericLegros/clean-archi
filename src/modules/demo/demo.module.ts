@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TodoModel } from './data/models/todo.model';
+import { TodoEntity } from './data/entities/todo.entity';
 import { TodoResolver } from './presentation/resolvers/todo.resolver';
 import { CreateTodoUsecase } from './domain/usecases/create-todo.usecase';
 import { DeleteTodoUsecase } from './domain/usecases/delete-todo.usecase';
@@ -14,7 +14,7 @@ import { GetHelloUsecase } from './domain/usecases/get-hello.usecase';
 import { TodoDataSourceImpl } from './data/datasources/Todo.datasource';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([TodoRepositoryImpl, TodoModel])],
+  imports: [TypeOrmModule.forFeature([TodoRepositoryImpl, TodoEntity])],
   controllers: [DemoController],
   providers: [
     TodoDataSourceImpl,

@@ -1,6 +1,6 @@
 import { CreateTodoInput } from '../../presentation/dtos/create-todo.dto';
 import { UpdateTodoInput } from '../../presentation/dtos/update-todo.dto';
-import { Todo } from '../entities/todo.entity';
+import { Todo } from '../models/todo.model';
 
 export interface TodoRepository {
   findAll(): Promise<Todo[]>;

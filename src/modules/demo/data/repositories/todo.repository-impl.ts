@@ -1,17 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { Todo } from '../../domain/entities/todo.entity';
+import { Todo } from '../../domain/models/todo.model';
 import { TodoRepository } from '../../domain/repositories/todo.repository';
 import { CreateTodoInput } from '../../presentation/dtos/create-todo.dto';
 import { UpdateTodoInput } from '../../presentation/dtos/update-todo.dto';
-import { TodoModel } from '../models/todo.model';
+import { TodoEntity } from '../entities/todo.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 
 @Injectable()
 export class TodoRepositoryImpl implements TodoRepository {
   constructor(
-    @InjectRepository(TodoModel)
-    private readonly todoRepository: Repository<TodoModel>,
+    @InjectRepository(TodoEntity)
+    private readonly todoRepository: Repository<TodoEntity>,
   ) {}
 
   findAll(): Promise<Todo[]> {
