@@ -8,6 +8,7 @@ import { DemoModule } from './modules/demo/demo.module';
 
 import configuration from './infrastructure/configuration';
 import { S3FileUploaderService } from './infrastructure/upload/s3-file-uploader.service';
+import { HelloCharlyModule } from './modules/hello-charly/hello-charly.module';
 
 @Module({
   imports: [
@@ -21,6 +22,8 @@ import { S3FileUploaderService } from './infrastructure/upload/s3-file-uploader.
 
     // MODULE DEMO
     DemoModule,
+
+    HelloCharlyModule,
 
     // POINT D'ENTREE DE GRAPHQL
     GraphQLModule.forRoot<ApolloDriverConfig>({
