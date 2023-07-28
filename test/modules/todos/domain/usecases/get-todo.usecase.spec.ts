@@ -14,7 +14,10 @@ describe('GetTodoUsecase', () => {
 
   it('should return a todo', async () => {
     // arrange
-    const mockTodo: Todo = { id: 1, title: 'Test Todo', completed: false };
+    const mockTodo: Todo = new Todo();
+    mockTodo.id = 1;
+    mockTodo.title = 'test';
+    mockTodo.completed = false;
     mockTodoRepository.findOne.mockResolvedValue(mockTodo);
     // act
     const result: Todo = await usecase.execute(1);
