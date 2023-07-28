@@ -5,12 +5,12 @@ import { TodoRepository } from '../repositories/todo.repository';
 export class DeleteTodoUsecase {
   constructor(private readonly todoRepository: TodoRepository) {}
 
-  async execute(id: number): Promise<void> {
+  async execute(id: number): Promise<boolean> {
     const todo = await this.todoRepository.findOne(id);
     if (!todo) {
       throw new NotFoundException('Todo not found');
     }
 
-    await this.todoRepository.delete(id);
+    return await this.todoRepository.delete(id);
   }
 }

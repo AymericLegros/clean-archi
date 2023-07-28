@@ -1,35 +1,31 @@
 import { DeepMocked, createMock } from '@golevelup/ts-jest';
 import { Todo } from '../../../../../src/modules/demo/domain/models/todo.model';
-import { GetTodoUsecase } from '../../../../../src/modules/demo/domain/usecases/get-todo.usecase';
 import { TodoRepository } from '../../../../../src/modules/demo/domain/repositories/todo.repository';
+import { DeleteTodoUsecase } from '../../../../../src/modules/demo/domain/usecases/delete-todo.usecase';
 
-describe('GetTodoUsecase', () => {
-  let usecase: GetTodoUsecase;
+describe('DeleteTodoUsecase', () => {
+  let usecase: DeleteTodoUsecase;
   let mockTodoRepository: DeepMocked<TodoRepository>;
 
   beforeEach(async () => {
     mockTodoRepository = createMock<TodoRepository>();
-    usecase = new GetTodoUsecase(mockTodoRepository);
+    usecase = new DeleteTodoUsecase(mockTodoRepository);
   });
 
-  it('should return a todo', async () => {
+  it('should return true if todo deleted', async () => {
     // arrange
-    const mockTodo: Todo = new Todo();
-    mockTodo.id = 1;
-    mockTodo.title = 'test';
-    mockTodo.completed = false;
-    mockTodoRepository.findOne.mockResolvedValue(mockTodo);
+    mockTodoRepository.delete.mockResolvedValue(true);
 
     // act
-    const result: Todo = await usecase.execute(1);
+    const result = await usecase.execute(1);
 
     // assert
-    expect(result).toEqual(mockTodo);
+    expect(result).toEqual(true);
   });
 
   it('should throw an error if todo not found', async () => {
     // arrange
-    mockTodoRepository.findOne.mockResolvedValue(undefined);
+    mockTodoRepository.delete.mockResolvedValue(false);
 
     // act
     const result = usecase.execute(1);
