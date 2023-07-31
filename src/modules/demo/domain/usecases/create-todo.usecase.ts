@@ -7,7 +7,7 @@ import { Todo } from '../models/todo.model';
 export class CreateTodoUsecase {
   constructor(private readonly todoRepository: TodoRepository) {}
 
-  async execute(createTodoInput: CreateTodoInput): Promise<Todo> {
+  execute(createTodoInput: CreateTodoInput): Promise<Todo> {
     return this.todoRepository.create(createTodoInput);
   }
 }

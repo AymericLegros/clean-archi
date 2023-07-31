@@ -25,7 +25,7 @@ describe('DeleteTodoUsecase', () => {
 
   it('should throw an error if todo not found', async () => {
     // arrange
-    mockTodoRepository.delete.mockResolvedValue(false);
+    mockTodoRepository.findOne.mockResolvedValue(undefined);
 
     // act
     const result = usecase.execute(1);
