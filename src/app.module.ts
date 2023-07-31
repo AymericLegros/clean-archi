@@ -4,10 +4,10 @@ import { ConfigModule } from '@nestjs/config';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { DatabaseModule } from './infrastructure/database/database.module';
-import { DemoModule } from './modules/demo/demo.module';
-
 import configuration from './infrastructure/configuration';
-import { S3FileUploaderService } from './infrastructure/upload/s3-file-uploader.service';
+
+import { DemoModule } from './modules/demo/demo.module';
+import { CommonModule } from './modules/common/common.module';
 import { HelloCharlyModule } from './modules/hello-charly/hello-charly.module';
 
 @Module({
@@ -23,6 +23,7 @@ import { HelloCharlyModule } from './modules/hello-charly/hello-charly.module';
     // MODULE DEMO
     DemoModule,
 
+    CommonModule,
     HelloCharlyModule,
 
     // POINT D'ENTREE DE GRAPHQL
@@ -31,10 +32,6 @@ import { HelloCharlyModule } from './modules/hello-charly/hello-charly.module';
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       sortSchema: true,
     }),
-  ],
-  providers: [
-    // MODULE D'UPLOAD S3
-    S3FileUploaderService,
   ],
 })
 export class AppModule {}

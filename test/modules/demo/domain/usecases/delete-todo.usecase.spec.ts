@@ -1,5 +1,4 @@
 import { DeepMocked, createMock } from '@golevelup/ts-jest';
-import { Todo } from '../../../../../src/modules/demo/domain/models/todo.model';
 import { TodoRepository } from '../../../../../src/modules/demo/domain/repositories/todo.repository';
 import { DeleteTodoUsecase } from '../../../../../src/modules/demo/domain/usecases/delete-todo.usecase';
 
