@@ -9,11 +9,11 @@ describe('GetHelloUsecase (e2e)', () => {
   let app: NestFastifyApplication;
 
   beforeEach(async () => {
-    const moduleRef = await Test.createTestingModule({
+    const moduleFixture = await Test.createTestingModule({
       imports: [AppModule],
     }).compile();
 
-    app = moduleRef.createNestApplication<NestFastifyApplication>(
+    app = moduleFixture.createNestApplication<NestFastifyApplication>(
       new FastifyAdapter(),
     );
 

@@ -5,8 +5,7 @@ import { HelloCharlyRepository } from '../repositories/hello-charly.repository';
 export class HelloCharlyReceiveDataUseCase {
   constructor(private readonly helloCharlyRepository: HelloCharlyRepository) {}
 
-  async execute(params: Body): Promise<boolean> {
-    console.log('params', params);
+  async execute(params: any): Promise<boolean> {
     if (!params) {
       throw new BadRequestException('No params');
     }
