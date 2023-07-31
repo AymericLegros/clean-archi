@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { HelloCharlyController } from './presentation/controller/hello-charly.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { HelloCharlieDatasourceImpl } from './data/datasources/hello-charly.datasource';
+import { HelloCharlyDataSourceImpl } from './data/datasources/hello-charly.datasource';
 import { HelloCharlyDataEntity } from './data/entities/data.entity';
 import { HelloCharlyReceiveDataUseCase } from './domain/usecases/receive-data.usecase';
 import { HelloCharlyGetDatasUseCase } from './domain/usecases/get-datas.usecase';
@@ -9,23 +9,23 @@ import { HelloCharlyGetDatasUseCase } from './domain/usecases/get-datas.usecase'
 @Module({
   imports: [
     TypeOrmModule.forFeature([
-      HelloCharlieDatasourceImpl,
+      HelloCharlyDataSourceImpl,
       HelloCharlyDataEntity,
     ]),
   ],
   controllers: [HelloCharlyController],
   providers: [
-    HelloCharlieDatasourceImpl,
+    HelloCharlyDataSourceImpl,
     {
       provide: HelloCharlyReceiveDataUseCase,
-      inject: [HelloCharlieDatasourceImpl],
-      useFactory: (helloCharlyDatasource: HelloCharlieDatasourceImpl) =>
+      inject: [HelloCharlyDataSourceImpl],
+      useFactory: (helloCharlyDatasource: HelloCharlyDataSourceImpl) =>
         new HelloCharlyReceiveDataUseCase(helloCharlyDatasource),
     },
     {
       provide: HelloCharlyGetDatasUseCase,
-      inject: [HelloCharlieDatasourceImpl],
-      useFactory: (helloCharlyDatasource: HelloCharlieDatasourceImpl) =>
+      inject: [HelloCharlyDataSourceImpl],
+      useFactory: (helloCharlyDatasource: HelloCharlyDataSourceImpl) =>
         new HelloCharlyGetDatasUseCase(helloCharlyDatasource),
     },
   ],

@@ -9,14 +9,16 @@ export interface HelloCharlyDataSource {
   findAll(): Promise<HelloCharlyDataEntity[]>;
 }
 
-export class HelloCharlieDatasourceImpl implements HelloCharlyDataSource {
+export class HelloCharlyDataSourceImpl implements HelloCharlyDataSource {
   constructor(
     @InjectRepository(HelloCharlyDataEntity)
-    private readonly helloCharlyRepository: Repository<HelloCharlyDataEntity>,
+    private readonly helloCharlyDataRepository: Repository<HelloCharlyDataEntity>,
   ) {}
+
   async create(params: CreateHelloCharlyDataEntity): Promise<boolean> {
     try {
-      await this.helloCharlyRepository.save(params);
+      await this.helloCharlyDataRepository.save(params);
+
       return true;
     } catch (error) {
       throw new InternalServerErrorException(error);
@@ -24,6 +26,6 @@ export class HelloCharlieDatasourceImpl implements HelloCharlyDataSource {
   }
 
   findAll(): Promise<HelloCharlyDataEntity[]> {
-    return this.helloCharlyRepository.find();
+    return this.helloCharlyDataRepository.find();
   }
 }

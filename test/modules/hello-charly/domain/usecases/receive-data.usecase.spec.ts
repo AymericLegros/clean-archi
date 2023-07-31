@@ -22,4 +22,15 @@ describe('HelloCharlyReceiveDataUsecase', () => {
     // assert
     expect(result).toEqual(true);
   });
+
+  it('should throw BadRequestException if params is undefined', async () => {
+    // arrange
+    const params = undefined;
+
+    // act
+    const result = usecase.execute(params);
+
+    // assert
+    await expect(result).rejects.toThrowError('No params');
+  });
 });
