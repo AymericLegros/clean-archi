@@ -10,10 +10,10 @@ export class HelloCharlyController {
   ) {}
 
   @Post('receive-data')
-  @HttpCode(200)
+  @HttpCode(201)
   async receiveData(@Body() params: Body): Promise<string> {
     await this.helloCharlyReceiveDataUseCase.execute(params);
-    return 'Ok';
+    return 'Created';
   }
 
   @Get()
