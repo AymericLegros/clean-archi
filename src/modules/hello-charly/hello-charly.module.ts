@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { HelloCharlieDatasourceImpl } from './data/datasources/hello-charly.datasource';
 import { HelloCharlyDataEntity } from './data/entities/data.entity';
 import { HelloCharlyReceiveDataUseCase } from './domain/usecases/receive-data.usecase';
+import { HelloCharlyGetDatasUseCase } from './domain/usecases/get-datas.usecase';
 
 @Module({
   imports: [
@@ -20,6 +21,12 @@ import { HelloCharlyReceiveDataUseCase } from './domain/usecases/receive-data.us
       inject: [HelloCharlieDatasourceImpl],
       useFactory: (helloCharlyDatasource: HelloCharlieDatasourceImpl) =>
         new HelloCharlyReceiveDataUseCase(helloCharlyDatasource),
+    },
+    {
+      provide: HelloCharlyGetDatasUseCase,
+      inject: [HelloCharlieDatasourceImpl],
+      useFactory: (helloCharlyDatasource: HelloCharlieDatasourceImpl) =>
+        new HelloCharlyGetDatasUseCase(helloCharlyDatasource),
     },
   ],
 })

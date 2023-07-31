@@ -2,9 +2,11 @@ import { Repository } from 'typeorm';
 import { CreateHelloCharlyDataEntity } from '../dtos/create-data.dto';
 import { HelloCharlyDataEntity } from '../entities/data.entity';
 import { InjectRepository } from '@nestjs/typeorm';
+import { InternalServerErrorException } from '@nestjs/common';
 
 export interface HelloCharlyDataSource {
   create(params: CreateHelloCharlyDataEntity): Promise<boolean>;
+  findAll(): Promise<HelloCharlyDataEntity[]>;
 }
 
 export class HelloCharlieDatasourceImpl implements HelloCharlyDataSource {
@@ -17,7 +19,11 @@ export class HelloCharlieDatasourceImpl implements HelloCharlyDataSource {
       await this.helloCharlyRepository.save(params);
       return true;
     } catch (error) {
-      throw new Error(error);
+      throw new InternalServerErrorException(error);
     }
+  }
+
+  findAll(): Promise<HelloCharlyDataEntity[]> {
+    return this.helloCharlyRepository.find();
   }
 }
