@@ -29,7 +29,7 @@ import { HelloCharlyModule } from './modules/hello-charly/hello-charly.module';
     // POINT D'ENTREE DE GRAPHQL
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      autoSchemaFile: join(process.cwd(), 'src/schema.graphql'),
       sortSchema: true,
     }),
   ],
